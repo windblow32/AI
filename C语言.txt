@@ -1,0 +1,2586 @@
+
+#include <stdio.h>
+#include <math.h>
+int isprime(int m);        
+main()
+{
+    int n,flag;
+    printf("Input n:");
+    scanf("%d",&n);        
+    flag=isprime(n);       
+    if(flag==1) 
+        printf("Yes!\n");    
+    else  
+        printf("No!\n");
+}
+/* 函数名：  isprime
+函数功能：判断m是否为素数
+入口参数：整型数m 
+返回值：  返回值为1时，表示m是素数；
+返回值为0时，表示m不是素数 */
+int isprime(int m)      
+{
+    int i;
+    if(m==1)              
+        return 0;  /*1不是素数，所以返回0值*/
+    for(i=2; i<=sqrt(m); i++)
+    {
+    if(m%i==0)  return 0;
+    
+    else
+    return 1; 
+    }
+}
+
+
+
+
+
+
+#include <stdio.h>
+long double px(double x,int n)
+{
+    if(n==1)
+    return x;
+    else
+    return x*(1-px(x,n-1));
+    
+}
+int main()
+{
+    printf("Enter X and N:");
+    int N;
+    double X,result;
+    scanf("%lf%d",&X,&N);
+    result=px(X,N);
+    printf("px=%f\n",result);
+}
+
+反序输出
+#include <stdio.h>
+void inverted(int);
+int main()
+{
+    int n;
+    printf("Enter number:");
+    scanf("%d",&n);
+    inverted(n);
+    return 0;
+}
+ 
+void inverted(int n)
+{
+    if(n<10)
+    {
+        printf("%d",n);
+        return;
+    }
+    else
+ 
+        printf("%d",n%10);
+    inverted(n/10);
+ 
+    return;
+}
+
+
+
+我的答案
+#include <stdio.h>
+int fuck(int num)
+{
+    if (num < 10)
+    {
+        printf("%d", num);
+        return;
+    }
+    else
+
+        printf("%d", num % 10);
+    fuck(num / 10);
+    return ;
+}
+int main()
+{
+    printf("Enter number:");
+    int num;
+    scanf("%d", &num);
+    getchar();
+    fuck(num);
+    return 0;
+}
+
+
+斐波那契数列的递归算法
+#include <stdio.h>
+#include <stdio.h>
+int count;
+long fib(int n)
+{   
+    count++;
+    if(n==0)
+    return 0;
+    else if(n==1)
+    return 1;
+    else
+    return fib(n-1)+fib(n-2);
+}
+int main()
+{   
+    printf("Input n:");
+    int n,i;
+    scanf("%d",&n);
+    for(i=1;i<=n;i++)
+    {   count=0;
+        printf("Fib(%d)=%d,",i,fib(i));
+        printf(" count=%d\n",count);
+    }
+    return 0;
+}
+
+
+
+输出字符串
+#include <stdio.h>
+int main()
+{
+    printf("\n输入整数：");
+    printf("\n输出是：");
+    int n;
+    do
+    {
+        n = getchar();
+        putchar(n);
+    }
+    while (n != '\n');
+    return 0;
+}
+
+
+汉诺塔
+参考答案
+#include <stdio.h>
+void Hanoi(int n, char a, char b, char c);
+void Move(int n, char a, char b);
+int main()
+{                      
+    int n;
+    printf("Input the number of disks:");
+    scanf("%d", &n);
+    printf("Steps of moving %d disks from A to B by means of C:\n", n);
+    Hanoi(n, 'A', 'B', 'C'); /*调用递归函数Hanoi()将n个圆盘借助于C由A移动到B*/
+    return 0;
+}                      
+/* 函数功能：用递归方法将n个圆盘借助于柱子c从源柱子a移动到目标柱子b上 */
+void Hanoi(int n, char a, char b, char c)
+{                      
+    if (n == 1)
+    {                      
+        Move(n, a, b);       /* 将第n个圆盘由a移到b */
+    }
+    else
+    {                      
+        Hanoi(n - 1, a, c, b); /* 递归调用Hanoi()，将第n-1个圆盘借助于b由a移动到c*/
+        Move(n, a, b);       /* 第n个圆盘由a移到b */
+        Hanoi(n - 1, c, b, a); /*递归调用Hanoi()，将第n-1个圆盘借助于a由c移动到b*/
+    }
+}                      
+/* 函数功能：  将第n个圆盘从源柱子a移到目标柱子b上 */
+void Move(int n, char a, char b)
+{                      
+    printf("Move %d: from %c to %c\n", n, a, b);
+}                      
+
+总分
+0
+
+编程求解汉诺塔问题。
+汉诺塔（Hanoi）是必须用递归方法才能解决的经典问题。它来自于印度神话。上帝创造世界时作了三根金刚石柱子，在第一根柱子上从下往上按大小顺序摞着64片黄金圆盘，如图7-3所示。上帝命令婆罗门把圆盘从下面开始按大小顺序重新摆放到第二根柱子上，并且规定，每次只能移动一个圆盘，在小圆盘上不能放大圆盘。有人预言说，这件事完成时宇宙会在一瞬间闪电式毁灭，也有人相信婆罗门至今仍在一刻不停地搬动着圆盘。
+**输入格式要求："%d" 提示信息："Input the number of disks:"
+**输出格式要求："Steps of moving %d disks from A to B by means of C:\n" "Move %d: from %c to %c\n"
+程序运行示例如下：
+Input the number of disks:3
+Steps of moving 3 disks from A to B by means of C:
+Move 1: from A to B
+Move 2: from A to C
+Move 1: from B to C
+Move 3: from A to B
+Move 1: from C to A
+Move 2: from C to B
+Move 1: from A to B
+
+同构式
+#include <stdio.h>
+int main()
+{                  
+    int m;
+    for (m = 1; m <= 99; m++)
+    {                  
+        if (m * m % 10 == m || m * m % 100 == m)
+        {                  
+            printf("m=%3d\t\tm*m=%6d\n", m, m * m);
+        }
+    }
+    return 0;
+}
+
+计算e
+参考答案
+#include  <math.h>
+#include <stdio.h>
+main()
+{                  
+    int n = 1, count = 1;
+    double  e = 1.0, term = 1.0;
+    long    fac = 1;
+    for (n = 1; fabs(term) >= 1e-5; n++)
+    {                  
+        fac = fac * n;
+        term = 1.0 / fac;    /* 计算累加项 */
+        e = e + term;         /* 累加 */
+        count++;               /* 记录累加的项数 */
+    }
+    printf("e = %f, count = %d\n", e, count);
+}       
+
+
+
+编程计算: 1!+3!+5!+...+(2n-1)!，要求阶乘计算调用fun函数实现，
+数据输入及打印结果在主函数实现。阶乘计算fun函数原型为:
+    long fun(int n);
+参数说明:
+    参  数: n是要进行阶乘计算的数；
+    返回值: 数n的阶乘
+****输入提示信息: "Input n:\n"
+****输入数据格式要求: "%d"
+****输出数据格式要求: "sum=%ld\n" (格式转换说明%ld用于输出长整型数值)
+
+
+
+
+
+
+
+
+
+#include <stdio.h>
+long fun(int n)
+{
+    if (n == 0)
+        return 1;
+    else
+        return fun(n - 1) * n;
+}
+int main()
+{
+    printf("Input n:\n");
+    int n,c, i = 1;
+    long sum=0;
+    scanf("%d", &n);
+    while (i <= n)
+    {
+        c=2*i-1;
+        sum = sum + fun(c);
+        i++;
+    }
+    printf("sum=%ld\n",sum);
+}
+
+
+
+编写计算组合数的程序。要求输入数据要有容错功能。
+**输入格式要求："%d,%d" 提示信息："Input m,k (m>=k>0):"
+**输出格式要求："p = %.0f\n"
+程序运行示例1如下：
+Input m,k (m>=k>0):3,2
+p = 3
+程序运行示例2如下：
+Input m,k (m>=k>0):2,3
+Input m,k (m>=k>0):3,3
+p = 1 
+Input m,k (m>=k>0):-2,-4
+Input m,k (m>=k>0):4,2
+p = 6
+
+参考答案
+#include <stdio.h>
+unsigned long  Fact(unsigned int  n);
+int main()
+{               
+    int m, k;
+    double p;
+    do
+    {               
+        printf("Input m,k (m>=k>0):");
+        scanf("%d,%d", &m, &k);
+    }
+    while (m < k || m < 0 || k < 0);
+    p = (double)Fact(m) / (Fact(k) * Fact(m - k));
+    printf("p = %.0f\n", p);
+    return 0;
+}               
+/* 函数功能：用迭代法计算无符号整型变量n的阶乘，当n>=0时返回n!；否则返回-1 */
+unsigned long  Fact(unsigned int  n)
+{               
+    unsigned int  i;
+    unsigned long result = 1;
+    for (i = 2; i <= n; i++)
+        result *= i;
+    return result;
+}         
+
+请编写函数fuc（）,函数的功能是： 根据以下公式求出p的值，结果由函数值返回。m , n 是两个正整数，且 m>n.  P= m!/(n!*(m-n)!)
+**输入格式要求："%d %d" 提示信息："请输入m,n的值( m>n )：\n"
+**输出格式要求："n项之和为：%lf\n"
+程序运行示例如下：
+请输入m,n的值( m>n )：
+5 3
+n项之和为：10.000000
+
+#include <stdio.h>
+/* 函数功能：用迭代法计算无符号整型变量n的阶乘，当n>=0时返回n!；否则返回-1 */
+unsigned long  Fact(unsigned int  n)
+{               
+    unsigned int  i;
+    unsigned long result = 1;
+    for (i = 2; i <= n; i++)
+        result *= i;
+    return result;
+}      
+int main()
+{
+    printf("请输入m,n的值( m>n )：\n");
+    int m,n;
+    scanf("%d %d",&m,&n);
+    printf("n项之和为：%lf\n",(double)Fact(m) / (Fact(n) * Fact(m - n)));
+    return 0;
+}
+
+
+
+某个公司采用公用电话传递数据，数据是四位的整数，在传递过程中是加密的，加密规则如下：每位数字都加上 5, 然后用和除以 10 的余数代替该数字，再将第一位和第四位交换，第二位和第三位交换。
+**输入格式要求："%d" 提示信息："Input a 4 digits number\n"
+**输出格式要求："%d"
+程序运行示例如下：
+Input a 4 digits number
+1234
+9876
+
+参考答案
+#include <stdio.h>
+int main()
+{                  
+    int a, i, aa[4], t;
+ 
+    printf("Input a 4 digits number\n");
+    scanf("%d", &a);
+ 
+    aa[0] = a % 10;
+    aa[1] = a % 100 / 10;
+    aa[2] = a % 1000 / 100;
+    aa[3] = a / 1000;
+ 
+    for (i = 0; i <= 3; i++)
+    {                  
+        aa[i] += 5;
+        aa[i] %= 10;
+    }
+ 
+    for (i = 0; i <= 3 / 2; i++)
+    {                  
+        t = aa[i];
+        aa[i] = aa[3 - i];
+        aa[3 - i] = t;
+    }
+ 
+    for (i = 3; i >= 0; i--)
+        printf("%d", aa[i]);
+    printf("\n");
+ 
+    return 0;
+}  
+
+
+
+相差为2的两个素数称为孪生素数。例如，3与5，41与43等都是孪生素数。设计程序求出指定区间上的所有孪生素数对。区间上限和下限由键盘获取。
+
+**输入格式要求："%ld,%ld" 提示信息："Please input c and d(c>2):"
+**输出格式要求："(%ld,%ld)" 
+
+程序运行示例如下：
+Please input c and d(c>2):10,100
+(11,13)(17,19)(29,31)(41,43)(59,61)(71,73)
+
+
+参考答案
+#include <stdio.h>
+#include <math.h>
+int main()
+{                            
+    long c, d, i, j, f = 0;
+    int t;
+    printf("Please input c and d(c>2):");
+    scanf("%ld,%ld", &c, &d); //1
+    if (c % 2 == 0) //1
+        c++; 
+    for (i = c; i <= d; i += 2) //1
+    {                            
+        for (t = 0, j = 3; j <= sqrt(i); j += 2) //1
+        {                            
+            if (i % j == 0) //1
+            {                            
+                t = 1; //1
+                break;//1
+            }
+        }
+        if (t == 0) //1
+        {                            
+            if (i - f == 2) //1
+            {                            
+                printf("(%ld,%ld)", f, i); //1
+            }
+            f = i;
+        }
+    }
+     
+    return 0;
+}          
+
+一辆卡车违反了交通规则，撞人后逃逸。现场有三人目击该事件，但都没有记住车号，只记住车号的一些特征。甲说：车号的前两位数字是相同的；乙说：车号的后两位数字是相同的，但与前两位不同；丙是位数学家，他说：4位的车号正好是一个整数的平方。现在请根据以上线索帮助警方找出车号以便尽快破案。
+**输出格式要求："The number is:%d\n"
+
+判断是不是完全平方数的方法！@！！！！
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+    int num, a, b, c, d;
+
+    for (num = 1000; num <= 9999; num++)
+    {
+        a = num / 1000;
+        b = (num - a * 1000) / 100;
+        c = num % 10;
+        d = (num - a * 1000 - b * 100) / 10;
+        if ((a == b) && (c == d) && (a != c) && (sqrt(num)*sqrt(num)==num))
+            printf("The number is:%d\n", num);
+        else
+            continue;
+    }
+}
+
+第7章实验任务4：
+任意输入一个整数m，若m不是素数，则从小到大输出其所有不包括1和自身的因子；否则输出“没有因子，是素数”的相关提示信息。
+输入提示信息："Please enter a number:"
+输入格式："%d"
+输出格式：
+有因子时："%d\n"
+无因子时："It is a prime number.No divisor!\n"
+输入的整数小于2时输出："It is not a prime number.No divisor!\n"
+
+#include <stdio.h>
+int main()
+{
+    printf("Please enter a number:");
+    int m,i;
+    int flag = 0;
+    scanf("%d", &m);
+    if (m >= 2)
+    {
+        for (i = 2; i <m; i++)
+        {
+            if (m % i == 0)
+            {
+                printf("%d\n", i);
+                flag = 1;
+            }
+        }
+        if (flag = 0)
+            printf("It is a prime number.No divisor!\n");
+    }
+    else
+    printf("It is not a prime number.No divisor!\n");
+    return 0;
+
+}
+
+有1、2、3、4个数字，能组成多少个互不相同且无重复数字的三位数？都是多少？
+ ***输出数据格式***："%d%d%d\n"
+#include <stdio.h>
+int main()
+{
+    int a,b,c,num;
+    for(a=1;a<=4;a++)
+    {
+        for(b=1;b<=4;b++)
+        {
+            for(c=1;c<=4;c++)
+            {
+                if((a!=b)&&(b!=c)&&(a!=c))
+                {
+                num=a*100+b*10+c;
+                printf("%d%d%d\n",a,b,c);
+                }
+                else
+                continue;
+            }
+        }
+    }
+}
+
+不超过1000的回文素数
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+    int flag = 0;
+    int i, q, e, a;
+    printf("Following are palindrome primes not greater than 1000:\n");
+    printf("11\t");
+    for (i = 100; i <= 999; i++)
+    {
+        q = i / 100;
+        e = i % 10;
+        if (q == e)
+        {
+            for (a = 2; a <= sqrt(i); a++)
+            {
+
+                if (i % a == 0)
+                    flag = 1;
+            }
+            if (flag == 0)
+            {
+                printf("%d\t", i);
+            }
+        }
+        flag=0;
+    }
+    return 0;
+}
+
+
+和数能表示1~23的5个正整数
+ 已知五个互不相同的正整数之和为23，且从这五个数中挑选若干个加起来可以表示从1
+ 到23之内的全部自然数，问这五个数都是什么？
+**输入格式要求：提示信息："There are following possible result:\n"
+**输出格式要求："[%d]:%d,%d,%d,%d,%d\n"
+程序运行示例如下：
+There are following possible result:
+[1]:1,2,3,5,12
+[2]:1,2,3,6,11
+[3]:1,2,3,7,10
+[4]:1,2,4,5,11
+[5]:1,2,4,6,10
+[6]:1,2,4,7,9
+
+参考答案
+#include <stdio.h>
+#include <stdlib.h>
+ 
+main()
+{                     
+    int a,b,c,d,e,i,j,k,l,m,x,count=0,f=0;
+    printf("There are following possible result:\n");
+    for(a=1;a<=23;a++)
+    for(b=1+a;b<=23-a;b++)
+        for(c=1+b;c<=23-a-b;c++)
+        for(d=1+c;d<=23-a-b-c;d++)
+        {                     
+            f=1;
+            if((e=23-a-b-c-d)>d)
+                for(f=0,x=1;x<24&&!f;x++)
+                    for(f=1,i=0;i<2&&f;i++)
+                        for(j=0;j<2&&f;j++)
+                            for(k=0;k<2&&f;k++)
+                                for(l=0;l<2&&f;l++)
+                                    for(m=0;m<2&&f;m++)
+                                        if(x==a*i+b*j+c*k+d*l+e*m) f=0;
+            if(!f)
+            printf("[%d]:%d,%d,%d,%d,%d\n",++count,a,b,c,d,e);
+        }
+}       
+
+
+小红有5本新书，借给3位小朋友，若每人每次只能借一本，则可以有多少种不同的借法？
+**输出格式要求："%d:%d,%d,%d\n"  
+
+#include <stdio.h>
+int main()
+{
+    int i = 1, a, b, c;
+    for (a = 1; a <= 5; a++)
+    {
+        for (b = 1; b <= 5; b++)
+        {
+            for (c = 1; c <= 5; c++)
+            {
+                if ((a != b) && (b != c) && (a != c))
+                {
+                    printf("%d:%d,%d,%d\n", i, a, b, c);
+                    i++;
+                }
+            }
+        }
+    }
+    return 0;
+}
+
+
+
+ 用迭代法求x=sqrt(a)。求平方根的迭代公式为：xn+1= (1/2)(xn+ a/xn)，要求前后两次求出的x的差的绝对值小于10-5。
+**输入格式要求："%f" 提示信息："请输入一个整数："
+**输出格式要求："%5.2f的平方根=%8.5f\n"
+
+
+参考答案
+#include <stdio.h>
+#include <math.h>
+ 
+int main()
+{        
+    float a, xn0, xn1;
+ 
+    printf("请输入一个整数：");
+    scanf("%f", &a);
+ 
+    xn0 = a / 2;       \\可能是任意值
+    xn1 = (xn0 + a / xn0) / 2;
+    do
+    {        
+        xn0 = xn1;
+        xn1 = (xn0 + a / xn0) / 2;
+    }
+    while (fabs(xn0 - xn1) >= 1e-5);
+    printf("%5.2f的平方根=%8.5f\n", a, xn1);
+ 
+    return 0;
+}  
+
+
+总分
+12
+
+二分法求根
+用二分法求下面的一元三次方程在区间[-10, 10]上误差不大于0.000001的根.
+
+用二分法求方程的根的基本原理是：若函数有实根，则函数曲线应当在根x*这一点上与x轴有一个交点，并且由于函数是单调的，在根附近的左右区间内，函数值的符号应当相反。利用这一特点，可以通过不断将求根区间二分的方法，每次将求根区间缩小为原来的一半，在新的折半后的区间内继续搜索方程的根，对根所在区间继续二分，直到求出方程的根为止。
+
+该方法的关键在于要解决如下两个问题：
+1）如何对区间进行二分，并在二分后的左右两个区间中确定下一次求根搜索的区间？
+假设区间端点为x1和x2，则通过计算区间的中点x0，即可将区间[x1, x2]二分为[x1, x0]和[x0, x2]。这时，为了确定下一次求根搜索的区间，必须判断方程的根在哪一个区间内，由上图可知方程的根所在区间的两个端点处的函数值的符号一定是相反的。也就是说，如果f(x0)与f(x1)是异号的，则根一定在左区间[x1, x0]内，否则根一定在右区间[x0, x2]内。
+2）如何终止这个搜索过程？即如何确定找到了方程的根？
+对根所在区间继续二分，直到|f(x0)|<=0.000001
+即|f(x0)|≈0时，则认为x0是逼近函数f(x)的根。
+输入格式: "%f,%f"
+输出格式："x=%6.2f\n"
+输入样例：
+0,4
+输出样例：
+x=__1.32
+(输出样例中下划线“_”代表空格，本例中数字1的前面有两个空格)
+
+参考答案
+#include <stdio.h>
+#include <math.h>
+int main()
+{                          
+    float x0, x1, x2, fx0, fx1, fx2;
+    do
+    {                          
+        scanf("%f,%f", &x1, &x2);
+        fx1 = x1 * x1 * x1 - x1 - 1;
+        fx2 = x2 * x2 * x2 - x2 - 1;
+    }
+    while (fx1 * fx2 > 0);
+    do
+    {                          
+        x0 = (x1 + x2) / 2;
+        fx0 = x0 * x0 * x0 - x0 - 1;
+        if ((fx0 * fx1) < 0)
+        {                          
+            x2 = x0;
+        }
+        else
+        {                          
+            x1 = x0;
+        }
+    }
+    while (fabs((double)fx0) >= 1e-6);
+    printf("x=%6.2f\n", x0);
+    return 0;
+} 
+
+
+使得每行输出固定数量数据的方法
+每隔几行输出一个换行符
+eg：
+输出100以内的质数，每行5个。
+**输出格式要求："%3d"
+程序运行结果如下：
+  2  3  5  7 11
+ 13 17 19 23 29
+ 31 37 41 43 47
+ 53 59 61 67 71
+ 73 79 83 89 97
+
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+    int flag=0;
+    int count=0;
+    int i,n;
+    for (n = 2; n <= 99; n++)
+    {
+        for (i = 2; i <= sqrt(n);i++)
+        {
+            if(n%i==0)
+            flag=1;
+        }
+        if(flag==0)
+        {
+        printf("%3d",n);
+        count++;
+        if(count%5==0)
+        printf("\n");
+        }
+        flag=0;
+    }
+}
+
+
+从键盘任意输入10个整数存入一个数组中，
+然后任意输入一个整数x，采用顺序查找法，在数组中查找该数，
+如果找到，则函数返回该数在数组中的下标位置，
+并在主函数中打印该值；
+如果没有找到，则返回-1，并在主函数中打印“Not found!”。
+要求按如下函数原型编程实现查找功能。
+int Search(int a[], int n, int x);
+在主函数中调用函数Search顺序查找x，
+然后在主函数中打印查找结果。
+要求必须按照题目要求和用函数编程，否则不给分。
+**要求输入10个整数的提示信息格式为：
+"Input 10 numbers:\n"（每输入一个数，键一次回车）；
+**要求输入整数x的提示信息格式为：
+"Input x:\n"
+**要求输出格式为:
+找到时的打印格式为"Subscript of x is %d\n"
+没找到时的打印格式为"Not found!\n"
+
+参考答案
+#include  <stdio.h>
+int  Search(int a[], int n, int x);
+main()
+{                    
+    int    a[10];
+    int    n=10, i, pos, x;          
+ 
+    printf("Input 10 numbers:\n");
+    for (i=0; i<n; i++)
+    {                    
+        scanf("%d", &a[i]);           //1
+    }
+    printf("Input x:\n");
+    scanf("%d",&x);                      //1
+    pos = Search(a, n, x);                //1
+    if (pos != -1)                  
+      {                  
+        printf("Subscript of x is %d\n", pos);
+    }
+    else
+    {                    
+           printf("Not found!\n");
+    }
+}                    
+ 
+int  Search(int a[], int n, int x)
+{                    
+    int  i;
+ 
+    for (i=0; i<n; i++)               
+    {                    
+        if (a[i] == x)             //1
+                return i;       //1
+    }
+    return -1;                 //1
+}              
+
+从键盘输入某班学生某门课的成绩（每班人数最多不超过40人），当输入为负值时，表示输入结束，试编程从键盘任意输入一个学号，查找该学号学生的成绩。
+**输入格式要求："%ld"(学号) "%ld%d" 提示信息："Total students are %d\n" "Input the searching ID:" "Input student’s ID and score:" 
+**输出格式要求："score = %d\n" "Not found!\n"
+程序的两次运行示例如下：
+① Input student’s ID and score:070310122 84
+Input student’s ID and score:070310123 83
+Input student’s ID and score:070310124 88
+Input student’s ID and score:070310125 87
+Input student’s ID and score:070310126 61
+Input student’s ID and score:-1 -1
+Total students are 5
+Input the searching ID:070310123
+score =  83
+② Input student’s ID and score:070310122 84
+Input student’s ID and score:070310123 83
+Input student’s ID and score:070310124 88
+Input student’s ID and score:070310125 87
+Input student’s ID and score:070310126 61
+Input student’s ID and score:-1 -1
+Total students are 5
+Input the searching ID:070310128
+Not found!
+
+参考答案
+#include <stdio.h>
+#define N 40
+int ReadScore(int score[], long num[]);          /*ReadScore()函数原型*/
+int LinSearch(long num[], long x, int n);        /* LinSearch()原函数型*/
+int main()
+{                       
+    int score[N], n, pos;
+    long num[N], x;
+    n = ReadScore(score, num);  /* 输入成绩和学号，返回学生总数 */
+    printf("Total students are %d\n", n);
+    printf("Input the searching ID:");
+    scanf("%ld", &x);            /* 以长整型格式从键盘输入待查找的学号x */
+    pos = LinSearch(num, x, n); /* 查找学号为num的学生 */
+    if (pos != -1)                   /* 若找到，则打印其分数 */
+    {                       
+        printf("score = %d\n", score[pos]);
+    }
+    else                            /* 若未找到，则打印"未找到"提示信息*/
+    {                       
+        printf("Not found!\n");
+    }
+    return 0;
+}                       
+/* 函数功能：输入学生的学号及其某门课成绩，当输入负值时，结束输入，返回学生人数 */
+int ReadScore(int score[], long num[]) /* ReadScore()函数定义 */
+{                       
+    int i = -1;         /*i初始化为-1，循环体内增1后可保证数组下标从0开始*/
+    do
+    {                       
+        i++;
+        printf("Input student’s ID and score:");
+        scanf("%ld%d", &num[i], &score[i]);
+    }
+    while (num[i] > 0 && score[i] >= 0);  /* 输入负值时结束成绩输入 */
+    return i;                                   /* 返回学生总数 */
+}                       
+/*按线性查找法查找值为x的数组元素，若找到则返回x在数组中的下标位置，否则返回-1*/
+int LinSearch(long num[], long x, int n) /* LinSearch()函数定义 */
+{                       
+    int  i;
+    for (i = 0; i < n; i++)
+    {                       
+        if (num[i] == x)    return (i); /* 若找到则返回x在数组中的下标 */
+    }
+    return (-1);                           /* 若循环结束仍未找到，则返回-1 */
+} 
+
+*验证卡布列克运算。即：任意一个四位数，只要它们各个位上的数字是不全相同的，就有这样的规律：
+（1）将组成该四位数的四个数字由大到小排列，形成由这四个数字构成的最大的四位数；
+（2）将组成该四位数的四个数字由小到大排列，形成由这四个数字构成的最小的四位数（如果四个数字中含有0，则得到的数不足四位）；
+（3）求两个数的差，得到一个新的四位数（高位零保留）。
+重复以上过程，最后得到的结果总是6174。这个数被称为卡布列克常数。请编写一个递归函数，完成以上的卡布列克运算。
+
+**输入格式要求："%d" 提示信息："Enter number:"
+**输出格式要求：" [%d]:%d-%d=%d\n"
+程序运行示例如下：
+Enter number: 1234
+ [1]:4321-1234=3087
+ [2]:8730-378=8352
+ [3]:8532-2358=6174
+
+#include <stdio.h>
+int count=0;
+int kblk(int n)
+{
+    int num[4];
+    int i,j,temp,qq,ww,front,back;
+    if (n == 6174)
+        return ;
+    else
+    {
+        num[0] = n / 1000;
+        num[1] = n % 1000 / 100;
+        num[2] = n % 100 / 10;
+        num[3] = n % 10;
+        for (i = 0; i < 4; i++)
+        {
+            for (j = 0; j < 4 - i; j++)
+            {
+                if (num[j] > num[j + 1])
+                {
+                    temp = num[j + 1];
+                    num[j + 1] = num[j];
+                    num[j] = temp;
+                }
+            }
+        }
+        qq = 1000;
+        front = 0;
+        back=0;
+        ww = 1;
+        for (i = 3; i>=0 ; i--)
+        {
+            front = front + num[i] * qq;
+            qq = qq / 10;
+        }
+        for (i = 3; i >=0; i--)
+        {
+            back = back + num[i] * ww;
+            ww = ww * 10;
+        }
+        count++;
+        printf(" [%d]:%d-%d=%d\n",count,front,back,front-back);
+        return kblk(front - back);
+    }
+
+}
+int main()
+{
+    int n;
+    printf("Enter number:");
+    scanf("%d", &n);
+    kblk(n);
+    return 0;
+}
+
+字符串排序。调用Input函数输入10个字符串，调用Sort函数对这10个字符串按字典顺序排序，调用Print函数打印输出排序后的字符串。
+Input函数原型：
+  void Input(char str[][80],int n);
+Sort函数原型：
+  void Sort(char str[][80],int n);
+Print函数原型：
+  void Print(char str[][80],int n);
+***输入数据格式：读入可包含有空格的字符串（字符串最大长度80）
+***输出数据格式: 一行输出一个字符串
+
+参考答案
+#include<stdio.h>
+#include<string.h>
+void Input(char a[][80], int n);
+void Sort(char a[][80], int n);
+void Print(char a[][80], int n);
+int main()
+{           
+    char a[10][80];
+ 
+    Input(a, 10);    //1
+    Sort(a, 10);     //1
+    Print(a, 10);    //1
+ 
+    return 0;
+}           
+void Input(char a[][80], int n)
+{           
+    int i;
+ 
+    for (i = 0; i < n; i++)          //1
+    {           
+        gets(a[i]);
+    }
+}           
+void Sort(char a[][80], int n)
+{           
+    int i, j;
+    char term[80];              //1
+ 
+    for (i = 0; i < n - 1; i++)          //1
+    {           
+        for (j = i + 1; j < n; j++)      //1
+        {           
+            if (strcmp(a[i], a[j]) > 0)      //1
+            {           
+                strcpy(term, a[i]); //1
+                strcpy(a[i], a[j]); //1
+                strcpy(a[j], term); //1
+            }
+        }
+    }
+}           
+void Print(char a[][80], int n)
+{           
+    int i;
+ 
+    for (i = 0; i < n; i++)         //1
+    {           
+        puts(a[i]);
+    }
+}  
+
+将数据按照奇偶排序
+输入10个数，将10个整数按升序排列输出，并且奇数在前，偶数在后。如果输入的10个数是:10 9 8 7 6 5 4 3 2 1 ，则输出：1,3,5,7,9,2,4,6,8,10。（编程提示：可利用2个数组变量，一个用来存放输入的整数，输入后，对这个数组进行排序，然后将数据复制到另一个数组中，先复制奇数再复制偶数）。 
+程序运行结果如下：
+Input 10 numbers:
+3 12 7 65 8 4 17 25 36 50↙
+Output: 3,7,17,25,65,4,8,12,36,50
+
+输入格式: "%d"
+输入数据提示信息："Input 10 numbers:\n"
+输出格式：
+输出数据提示信息："Output: " （注：冒号“：”的后面有一个空格）
+前9个数据的输出格式："%d,"
+最后一个数据的输出格式："%d\n"
+
+#include <stdio.h>
+int main()
+{
+    int temp,tempy;
+    int i,j;
+    int num[10];
+    int front[10];
+    int back[10];
+    int count=0;
+    int county=0;
+    printf("Input 10 numbers:\n");
+    for(i=0;i<10;i++)
+    {
+        scanf("%d",&num[i]);
+    }
+    printf("Output: ");
+    for(i=0;i<10;i++)
+    {
+        if(num[i]%2==1)
+        {
+        front[count]=num[i];
+        count++;
+        }
+    }
+    //count为偶数
+    for(i=0;i<count;i++)
+    {
+        for(j=0;j<count-i;j++)
+        {
+            if(front[j]>front[j+1])
+            {
+                temp=front[j+1];
+                front[j+1]=front[j];
+                front[j]=temp;
+            }
+        }
+    }
+    for(i=0;i<count;i++)
+    {
+    printf("%d,",front[i]);
+    }
+    for(i=0;i<10;i++)
+    {
+        if(num[i]%2==0)
+        {
+        back[county]=num[i];
+        county++;
+        }
+    }
+    //county为奇数
+    for(i=0;i<county;i++)
+    {
+        for(j=0;j<county-i;j++)
+        {
+            if(back[j]>back[j+1])
+            {
+                tempy=back[j+1];
+                back[j+1]=back[j];
+                back[j]=tempy;
+            }
+        }
+    }
+    for(i=0;i<county-1;i++)
+    {
+    printf("%d,",back[i]);
+    }
+    printf("%d\n",back[county-1]);
+    return 0;
+}
+
+程序：检查数中重复出现的数字。
+用户输入数后，程序显示信息Repeated digit或No Repeated digit：
+Enter a number: 28212
+Repeated digit
+数28212有一个重复的数字（2），而数9357则没有。
+**输入格式要求："%ld" 提示信息："Enter a number :"
+**输出格式要求："Repeated digit\n\n" "No Repeated digit\n\n"
+此程序中可以将输入的数的每个位数，存到数组中，利用循环。！！！！！！！
+
+#include <stdio.h>
+int main()
+{
+    int flag=0;
+    int i=0;
+    int j,w,k,n,m,p=1;
+    int num[1000];
+    printf("Enter a number :");
+    scanf("%d",&n);
+    do
+    {
+        p*=10;
+    }
+    while(10*p<=n);
+    k=0;
+    for(m=p;m>=10;m=m/10)
+    {
+        num[k]=n/m;
+        n=n-num[k]*m;
+        k++;
+    }
+    num[k]=n%10;
+    /*i is wei shu */
+    for(j=0;j<k+1;j++)
+    {
+        for(w=j+1;w<k+1;w++)
+        {
+            if(num[j]==num[w])
+            {
+                flag=1;
+            }
+        }
+    }
+    if(flag==1)
+    printf("Repeated digit\n\n");
+    else
+    printf("No Repeated digit\n\n");
+    return 0;
+}
+
+求1898
+  现將不超过2000的所有素数从小到大排成第一行，第二行上的每个数都等于它“右肩”上的素数与“左肩”上的素数之差。这样可以得到两行数，如下：
+2 3 5 7 11 13 17 19 ......1997 1999
+  1 2 2  4  2   4   2 .........               2
+请编程求出：第二行数中是否存在这样的若干个连续的整数，它们的和恰好是1898？假如存在的话，又有几种这样的情况？
+**输入格式要求：提示信息："There are follwing primes in first row :\n"
+**输出格式要求："(%d).%3d,......,%d\n"
+程序运行示例如下：
+There are follwing primes in first row :
+(1).101,......,1999
+(2). 89,......,1987
+(3). 53,......,1951
+(4).  3,......,1901
+
+#include <stdio.h>
+#include <math.h>
+#define NUM 320
+int number[NUM];
+int fflag(int i);
+int main()
+{                     
+    int i, j, count = 0;
+    printf("There are follwing primes in first row :\n");
+    for (j = 0, i = 3; i <= 1999; i += 2)
+        if (fflag(i)) number[j++] = i;
+    for (j--; number[j] > 1898; j--)
+    {                     
+        for (i = 0; number[j] - number[i] > 1898; i++);
+        if (number[j] - number[i] == 1898)
+            printf ("(%d).%3d,......,%d\n", ++count, number[i], number[j]);
+    }
+    return 0;
+}                     
+int fflag(int i)
+{                     
+    int j;
+    if (i <= 1) return 0;
+    if (i == 2)  return 1;
+    if (!(i % 2)) return 0;
+    for (j = 3; j <= (int)( sqrt((double)i) + 1); j += 2)
+        if (i % j == 0)  return 0;
+    return 1;
+}        
+
+计算分数的精确值
+    使用数组精确计算M/N（0<M<N<=100）的值。如果M/N是无限循环小数，则计算并输出它的第一循环节，同时要求输出循环节的起止位置（小数位的序号）。
+**输入格式要求："%d/%d" 提示信息："please input a fraction (m/n))  (0< m< n<=100):"
+**输出格式要求："%d/%d it's accuracy value is:0." "\n\tand it is a infinite cyclic fraction from %d\n" "\tdigit to %d digit after decimal point.\n"
+程序运行示例如下：
+please input a fraction (m/n))  (0< m< n<=100):1/6
+1/6 it's accuracy value is:0.16
+	and it is a infinite cyclic fraction from 2
+	digit to 2 digit after decimal point.
+参考答案
+#include <stdio.h>
+int remainder[101],quotient[101];
+main()
+{                        
+    int m,n,i,j;
+    printf("please input a fraction (m/n))  (0< m< n<=100):");
+    scanf("%d/%d",&m,&n);
+    printf("%d/%d it's accuracy value is:0.",m,n);
+    for (i=1;i<=100;i++)
+    {                        
+        remainder[m]=i;
+        m*=10;
+        quotient[i]=m/n;
+        m=m%n;
+        if(m==0)
+        {                        
+            for(j=1;j<=i;j++)
+                printf("%d",quotient[j]);
+            break;
+        }
+        if(remainder[m]!=0)
+        {                        
+            for (j=1;j<=i;j++)
+                printf("%d",quotient[j]);
+            printf("\n\tand it is a infinite cyclic fraction from %d\n",remainder[m]);
+            printf("\tdigit to %d digit after decimal point.\n",i);
+            break;
+        }
+    }
+} 
+小明买书
+   小明假期同爸爸一起去书店，他选中了六本书，每本书的单价分别：3.1，1.7，2，5.3，0.9和7.2元。不巧的是，爸爸兜里只带了十几块钱，为了让小明过一个愉快的假期，爸爸仍然同意买书，但提出了一个要求，要小明从六本书中选出若干本，使得单价相加所得的和同10最接近。你能够帮助小明解决这个问题吗？
+**输入格式要求："%f"
+**输出格式要求："10(+ -)%.2f=" "%.2f+"  "%.2f\n"
+程序运行示例如下：
+3.1 1.7 2 5.3 0.9 7.2
+10(+ -)0.10=2.00+0.90+7.20
+10(+ -)0.10=1.70+2.00+5.30+0.90
+10(+ -)0.10=3.10+1.70+5.30
+
+参考答案
+#include <math.h>
+main()
+{                
+  int d[6],m,i,j;
+  long b[63],flag;
+  float c[6]={3.1,1.7,2,5.3,0.9,7.2},min,x;
+  /*printf("Please enter the prices of 6 books:");
+  for(i=0;i<6;i++)
+    scanf("%f",&c[i]);*/
+  for(i=0,min=-1,d[0]=0;d[0]<2;d[0]++)
+    for(d[1]=0;d[1]<2;d[1]++)
+      for(d[2]=0;d[2]<2;d[2]++)
+        for(d[3]=0;d[3]<2;d[3]++)
+          for(d[4]=0;d[4]<2;d[4]++)
+           for(d[5]=0;d[5]<2;d[5]++)
+           {                 
+             for(flag=0,x=0.,j=5;j>=0;j--)
+             {               
+               x+=c[j]*d[j];flag=flag*10+d[j];
+             }
+             x=((x-10>0)?x-10:10-x);
+             if(min<0)
+             {               
+               min=x;
+               b[i++]=flag;
+             }
+             else if(min-x>1.e-6)
+             {               
+                 min=x;b[0]=flag;i=1;
+             }
+             else if(fabs((double)x-min)<1.e-6)
+                 b[i++]=flag;
+           }
+    for(m=0;m<i;m++)
+    {                
+      printf("10(+ -)%.2f=",min);
+      for(flag=b[m],j=0;flag>0;j++,flag/=10)
+            if(flag%10)
+                if(flag>1) printf("%.2f+",c[j]);
+                else     printf("%.2f\n",c[j]);
+    }
+}   
+插入排序！@！！！！！
+
+请按如下函数原型编程实现从键盘输入一组无序的10个整数，按从小到大的顺序插入到数组中，然后输出。
+函数原型：insert（int px[]）
+要求：
+在主函数中输入一组无序的整数，调用函数insert（）实现按从小到大的顺序插入到数组中，然后在主函数中输出。
+**要求输入提示信息为:无
+**要求输入格式为: "%d"
+**要求输出格式为：
+第一种输出格式：用"%d "（注意后面有1空格）输出前9个数，用 "%d"输出最后一个数
+第二种输出格式：用"%d "（注意后面有1空格）输出前10个数
+程序运行示例如下：
+9 23 78 99 34 66 1 20 60 16     （此处输入十个无序整数）
+1 9 16 20 23 34 60 66 78 99
+
+#include <stdio.h>
+void insert(int num[],int n)
+{
+    int j,key,i;
+    for(j=1;j<n;j++)
+    {
+        key=num[j];
+        i=j-1;
+        while((i>=0)&&(num[i]>key))
+        {
+            num[i+1]=num[i];
+            i--;
+        }
+        num[i+1]=key;
+    }
+}
+int main()
+{
+    int i,num[10];
+    for(i=0;i<10;i++)
+    {
+        scanf("%d",&num[i]);
+    }
+    insert(num,10);
+    for(i=0;i<10;i++)
+    {
+        printf("%d ",num[i]);
+    }
+    return 0;
+}
+
+按如下函数原型编写程序，用一个整型数组feedback保存调查的40个反馈意见。用函数编程计算反馈意见的平均数（Mean）、中位数（Median）和众数（Mode）。中位数指的是排列在数组中间的数。如果原始数据的个数是偶数，那么中位数等于中间那两个元素的算术平均值。众数是数组中出现次数最多的那个数（不考虑两个或两个以上的反馈意见出现次数相同的情况）。
+int Mean(int answer[], int n);
+int Median(int answer[], int n);
+int Mode(int answer[], int n);
+void DataSort(int a[], int n);
+输入提示信息："Input the feedbacks of 40 students:\n"
+输入格式："%d"
+输出提示信息和输出格式：
+"Mean value = %d\n"
+"Median value = %d\n"
+"Mode value = %d\n"
+
+小心，其中中位数输出时，数据的下标是-1，而不是正常的+1！！！！
+
+#include <stdio.h>
+int count[40];
+int Mean(int answer[], int n)
+{
+    int i;
+    double sum = 0, average;
+    for (i = 0; i < n; i++)
+    {
+        sum = sum + answer[i];
+    }
+    average = sum / n;
+    return average;
+}
+int Median(int answer[], int n)
+{
+    int i, j, temp, k;
+    for (i = 0; i < n; i++)
+    {
+        for (j = 0; j < n - i; j++)
+        {
+            if (answer[j] > answer[j + 1])
+            {
+                temp = answer[j];
+                answer[j] = answer[j + 1];
+                answer[j + 1] = temp;
+            }
+        }
+    }
+    if (n % 2 == 1)
+    {
+        k = 0.5 * (n - 1);
+        return answer[k];
+    }
+    else
+    {
+        k = 0.5 * n;
+        return 0.5 * (answer[k] + answer[k - 1]);
+    }
+}
+int Mode(int answer[], int n)
+{
+    int i, j, max, pos;
+    for (i = 1; i < n; i++)
+    {
+        for (j = 0; j < i; j++)
+        {
+            if (answer[i] == answer[j])
+            {
+                count[i]++;
+            }
+        }
+    }
+    max = count[0];
+    for (i = 0; i < n; i++)
+    {
+        if (count[i] > max)
+        {
+            max = count[i];
+            pos = answer[i];
+        }
+    }
+    return pos;
+}
+int main()
+{
+    int i, answer[40];
+    printf("Input the feedbacks of 40 students:\n");
+    for (i = 0; i < 40; i++)
+    {
+        scanf("%d", &answer[i]);
+    }
+    printf("Mean value = %d\n", Mean(answer, 40));
+    printf("Median value = %d\n", Median(answer, 40));
+    printf("Mode value = %d\n", Mode(answer, 40));
+}
+
+插入排序，重点是找到插入的位置，然后把其他的元素向后移动。
+在升序排序的数组中插入一个元素 用函数编程实现在一个按升序排序的数组中查找x应插入的位置，
+将x插入数组中，使数组元素仍按升序排列。 提示：插入（Insertion）是数组的基本操作之一。
+插入法排序算法的关键在于要找到正确的插入位置，然后依次移动插入位置及其后的所有元素，
+腾出这个位置放入待插入的元素。插入排序的原理如图所示：
+
+程序运行结果示例：
+Input array size:
+5↙
+Input array:
+1 3 5 7 9↙
+Input x:
+4↙
+After insert 4:
+   1   3   4   5   7   9
+输入格式:
+插入前数组元素个数、数组元素、待插入的元素x的输入格式都是："%d"
+输出格式：
+输入插入前数组元素个数提示信息："Input array size:\n"
+输入插入前已按升序排序的数组元素提示信息："Input array:\n"
+输入待插入的元素x提示信息："Input x:\n"
+输出插入x后的数组元素提示信息："After insert %d:\n"
+数组元素输出格式："%4d"
+
+#include <stdio.h>
+void insert(int a[],int n,int x)
+{
+    int i=0,pos;
+    while(i<n&&a[i]<x)
+    {
+        i++;
+    }
+    pos=i;
+    for(i=n-1;i>=pos;i--)
+    {
+        a[i+1]=a[i];
+    }
+    a[pos]=x;
+}
+int main()
+{
+    int num[21],n,x,i;
+    printf("Input array size:\n");
+    scanf("%d",&n);
+    printf("Input array:\n");
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&num[i]);
+    }
+    printf("Input x:\n");
+    scanf("%d",&x);
+    printf("After insert %d:\n",x);
+    insert(num,n,x);
+    for(i=0;i<=n;i++)
+    {
+        printf("%4d",num[i]);
+    }
+    printf("\n");
+    return 0;
+}
+
+1~9组成三个3位数的平方数。将1、2、3、4、5、6、7、8、9九个数字分成三组，每个数字只能用一次，即每组三个数不许有重复数字，要求每组中的三位数都组成一个平方数
+**输入格式要求：提示信息："The 3 squares with 3 different digits each are:\n"
+**输出格式要求："%d,%d,%d\n"
+程序运行示例如下：
+The 3 squares with 3 different digits each are:
+361,529,784
+
+参考答案
+#include<stdio.h>
+int main()
+{                  
+    int a[20],num[20][3],b[10];
+    int i,j,k,m,n,t,flag;
+    printf("The 3 squares with 3 different digits each are:\n");
+    for(j=0,i=11;i<=31;i++)
+    if(i%10!=0)
+    {                  
+        k=i*i;
+        num[j+1][0]=k/100;
+        num[j+1][1]=k/10%10;
+        num[j+1][2]=k%10;
+        if(!(num[j+1][0]==num[j+1][1]||num[j+1][0]==num[j+1][2]||
+                            num[j+1][1]==num[j+1][2]))
+            a[++j]=k;//找到满足条件的三位数// 小心++j 是先加，在给数组传递。
+    }
+    for(i=1;i<=j-2;++i)
+    {                  
+        b[1]=num[i][0];
+        b[2]=num[i][1];
+        b[3]=num[i][2];//第i个数的个十百//
+        for(t=i+1;t<=j-1;++t)//j是总个数，i的下一个数//
+        {                  
+            b[4]=num[t][0];
+            b[5]=num[t][1];
+            b[6]=num[t][2];//下一个数的个十百//
+            for(flag=0,m=1;!flag&&m<=3;m++)
+                for(n=4;!flag&&n<=6;n++)
+                    if(b[m]==b[n])flag=1;//比较6个数都不同//
+            if(!flag)
+                for(k=t+1;k<=j;k++)
+                {                  
+                    b[7]=num[k][0];
+                    b[8]=num[k][1];
+                    b[9]=num[k][2];
+                    for(flag=0,m=1;!flag&&m<=6;m++)
+                        for(n=7;!flag&&n<=9;n++)
+                            if(b[m]==b[n])flag=1;
+                    if(!flag)
+                        printf("%d,%d,%d\n",a[i],a[t],a[k]);
+                }
+        }
+    }
+    return 0;
+}        
+利用矩阵相乘公式cij= aik*bkj，编程计算并输出m×n阶矩阵A和n×m阶矩阵B之积。其中，m和n从键盘输入，m和n的值不超过6，否则提示用户重新输入，如果输入非法字符也提示用户重新输入。要求按如下函数原型编写程序：
+/* 函数功能：计算m×n阶矩阵A和n×m阶矩阵B之积，结果存于二维数组c中 */
+void MultiplyMatrix(int a[ROW][COL], int b[COL][ROW], int c[ROW][ROW], int m, int n);
+/* 函数功能：输出m×m阶矩阵a中的元素 */
+void  PrintMatrix(int a[ROW][ROW], int m);
+**输入m和n的输入提示信息："Input m, n:"
+**输入m和n的输入格式："%d,%d"  
+**输入矩阵元素的输入提示信息："Input %d*%d matrix a:\n"  
+**输入矩阵元素的输入格式： "%d"
+**输出提示信息："Results:\n"
+**输出格式："%6d"
+参考答案
+#include <stdio.h>
+#define  ROW 6
+#define  COL 6
+/* 函数功能：计算矩阵相乘之积，结果存于二维数组c中 */
+void MultiplyMatrix(int a[ROW][COL], int b[COL][ROW], int c[ROW][ROW], int m, int n)//1
+{                     
+    int i, j, k;
+    for (i = 0; i < m; i++)//1
+    {                     
+        for (j = 0; j < m; j++)//1
+        {                     
+            c[i][j] = 0;//1
+            for (k = 0; k < n; k++)//1
+            {                     
+                c[i][j] = c[i][j] + a[i][k] * b[k][j];//1
+            }
+        }
+    }
+}                     
+/* 函数功能：输出矩阵a中的元素 */
+void  PrintMatrix(int a[ROW][ROW], int m)//1
+{                     
+    int i , j ;
+    for (i = 0; i < m; i++)
+    {                     
+        for (j = 0; j < m; j++)
+        {                     
+            printf("%6d", a[i][j]);
+        }
+        printf("\n");
+    }
+}                     
+int main()
+{                     
+    int a[ROW][COL], b[COL][ROW], c[ROW][ROW], i, j, m, n, ret;
+    do
+    {                     
+        printf("Input m, n:");
+        ret = scanf("%d,%d", &m, &n);//1
+        if (ret != 2) while (getchar() != '\n');//1
+    }while (m > 6 || n > 6 || ret != 2);//e1
+    printf("Input %d*%d matrix a:\n", m, n);
+    for (i = 0; i < m ; i++)
+    {                     
+        for (j = 0; j < n; j++)
+        {                     
+            scanf("%d", &a[i][j]);//1
+        }
+    }
+    printf("Input %d*%d matrix b:\n", n, m);
+    for (i = 0; i < n; i++)
+    {                     
+        for (j = 0; j < m; j++)
+        {                     
+            scanf("%d", &b[i][j]);//1
+        }
+    }
+    MultiplyMatrix(a, b, c, m, n);//1
+    printf("Results:\n");
+    PrintMatrix(c, m);//1
+    return 0;
+}    
+插入空格
+void insert(char s[])
+{
+    char t[100];
+    int i, j;
+    strcpy(t, s);
+    for (i = 0, j = 0; t[i] != '\0'; i++, j++)
+    {
+        s[j] = t[i];
+        j++;
+        s[j] = ' ';
+    }
+    s[j] = '\0';
+}
+
+按如下函数原型编程计算并输出n×n阶矩阵的转置矩阵。其中，n由用户从键盘输入。已知n值不超过10。
+void Transpose(int (*a)[N], int n);
+void  Swap(int *x, int *y);
+void InputMatrix(int (*a)[N], int n);
+void PrintMatrix(int (*a)[N], int n);
+输入提示信息："Input n:"
+输入格式："%d"
+输入提示信息："Input %d*%d matrix:\n"
+输出提示信息："The transposed matrix is:\n"
+输出格式："%d\t"
+#include <stdio.h>
+#define N 10
+void Transpose(int (*a)[N], int n);
+void  Swap(int *x, int *y);
+void InputMatrix(int (*a)[N], int n);
+void PrintMatrix(int (*a)[N], int n);
+int main()
+{
+    int s[N][N], n;
+    printf("Input n:");
+    scanf("%d", &n);
+    InputMatrix(s, n);
+    Transpose(s, n);
+    printf("The transposed matrix is:\n");
+    PrintMatrix(s, n);
+    return 0;
+}
+void  Swap(int *x, int *y)
+{
+    int temp;
+    temp = *x;
+    *x = *y;
+    *y = temp;
+}
+void Transpose(int (*a)[N], int n)
+{
+    int i, j;
+    for (i = 0; i < n; i++)
+    {
+        for (j = i; j < n; j++)
+        {
+            Swap(*(a + i) + j, *(a + j) + i);
+        }
+    }
+}
+void InputMatrix(int (*a)[N], int n)
+{
+    int j, i;
+    printf("Input %d*%d matrix:\n", n, n);
+    for (i = 0; i < n; i++)
+    {
+        for (j = 0; j < n; j++)
+        {
+            scanf("%d", *(a + i) + j);
+        }
+    }
+}
+void PrintMatrix(int (*a)[N], int n)
+{
+    int i, j;
+    for (i = 0; i < n; i++)
+    {
+        for (j = 0; j < n; j++)
+        {
+            printf("%d\t", *(*(a + i) + j));
+        }
+        printf("\n");
+    }
+}
+从一个字符串删除元音字母，例如，如果输入的字符串是“C programming”，那么输出将是“C prgrmmng”。
+**输入格式要求： 使用gets()   提示信息："Enter a string to delete vowels\n"
+**输出格式要求："String after deleting vowels: %s\n"
+程序运行示例如下：
+Enter a string to delete vowels
+c programming↙
+String after deleting vowels: c prgrmmng
+
+#include <stdio.h>
+int main()
+{
+    int i,j;
+    char a[100];
+    printf("Enter a string to delete vowels\n");
+    gets(a);
+    for(i=0;a[i]!='\0';i++)
+    {
+        if((a[i]=='a')||(a[i]=='e')||(a[i]=='i')||(a[i]=='o')||(a[i]=='u'))
+        {
+        for(j=i;a[j]!='\0';j++)
+        {
+            a[j]=a[j+1];
+        }
+        }
+    }
+    printf("String after deleting vowels: %s\n",a);
+    return 0;
+}
+星期查找 
+任意输入英文的星期几，通过查找如图所示的星期表，输出其对应的数字，若查到表尾，仍未找到，则输出错误提示信息。
+
+提示：用一个二维字符数组weekDay来存放如图所示的星期表的内容（字符串）。输入待查找的字符串，然后在星期表中顺序查找与输入字符串相匹配的字符串。找到的字符串在星期表数组中的第一维下标（行号）即为题目所求。
+程序运行结果示例1：
+Please enter a string:
+Friday↙
+Friday is 5
+ 
+程序运行结果示例2：
+Please enter a string:
+Fruday↙
+Not found!
+输入格式:  字符串输入采用gets()函数
+输出格式：
+输入提示信息："Please enter a string:\n"
+找到了，输出："%s is %d\n"
+没找到，输出："Not found!\n"
+
+#include  <stdio.h>
+#include  <string.h>
+#define   WEEKDAYS  7             /*每星期天数*/
+#define   MAX_STR_LEN  10         /*字符串最大长度*/
+int main()
+{                    
+    int    i, pos;
+    int    findFlag = 0;          /* 置找到标志为假 */
+    char   x[MAX_STR_LEN];
+    char   weekDay[][MAX_STR_LEN] = {"Sunday", "Monday", "Tuesday",
+                                     "Wednesday", "Thursday", "Friday",                                  "Saturday"
+                                    };
+    printf("Please enter a string:\n");
+    gets(x);
+    /*scanf("%s", x);                /* 输入待查找的字符串 */
+    for (i = 0; i < WEEKDAYS && !findFlag; i++)
+    {                    
+        if (strcmp(x, weekDay[i]) == 0)
+        {                    
+            pos = i;          /*记录找到的位置*/
+            findFlag = 1;    /*若找到，则置找到标志为真，退出循环*/
+        }
+    }
+    if (findFlag)        /*找到标志为真，说明找到*/
+        printf("%s is %d\n", x, pos);
+    else                  /*找到标志为假，说明未找到*/
+        printf("Not found!\n");
+    return 0;
+}                   
+
+删除指定的字符   有一个重要的方法：往前进位
+有技巧！！！！！！！！
+Eg：
+ADDDDA
+A
+printf:DDDD
+参考答案
+#include <stdio.h>
+ 
+void Squeeze(char s[], char c);
+ 
+main()
+{                  
+    char a[80], c;
+ 
+    gets(a);
+    scanf("%c", &c);
+    Squeeze(a, c);
+    printf("%s\n", a);
+}                  
+ 
+void Squeeze(char s[], char c)
+{                  
+    int i, j;
+ 
+    for (i = 0, j = 0; s[i] != '\0'; i++)
+    {                  
+        if (s[i] != c)
+        {                  
+            s[j] = s[i];
+            j++;
+        }
+    }
+    s[j] = '\0';
+}   
+
+ISBN识别码判断
+每一本正式出版的图书都有一个ISBN号码与之对应，ISBN码包括9位数字、1位识别码和3位分隔符，其规定格式如“x-xxx-xxxxx-x”，其中符号“-”就是分隔符（键盘上的减号），最后一位是识别码，例如0-670-82162-4就是一个标准的ISBN码。ISBN码的首位数字表示书籍的出版语言，例如0代表英语；第一个分隔符“-”之后的三位数字代表出版社，例如670代表维京出版社；第二个分隔符后的五位数字代表该书在该出版社的编号；最后一位为识别码。 
+识别码的计算方法如下： 
+   首位数字乘以1加上次位数字乘以2……以此类推，用所得的结果mod 11，所得的余数即为识别码，如果余数为10，则识别码为大写字母X。例如ISBN号码0-670-82162-4中的识别码4是这样得到的：对067082162这9个数字，从左至右，分别乘以1，2，...,9,再求和，即0×1+6×2+……+2×9=158，然后取158 mod 11的结果4作为识别码。 
+   你的任务是编写程序判断输入的ISBN号码中识别码是否正确，如果正确，则仅输出“Right”；如果错误，则输出你认为是正确的ISBN号码。
+
+程序运行结果示例1：
+0-123-41562-4↙
+Right
+
+程序运行结果示例2：
+0-123-41562-7↙
+0-123-41562-4
+
+输入格式: 用gets()输入字符串
+输入只有一行，是一个字符序列，表示一本书的ISBN号码（保证输入符合ISBN的格式要求）。
+输出格式：
+输入的ISBN号码的识别码正确，输出信息: "Right"
+输入的ISBN号码的识别码错误，按照规定的格式，输出正确的ISBN号码（包括分隔符“-”），输出格式："%s"
+
+一定要注意，算字母，数字，引用数组时，实际上是ASCII
+一定要减去'0'  和'a'!!!!!!!!!!!!!!!
+
+参考答案
+#include <stdio.h>
+ 
+int main()
+{          
+    char isbn[13];
+    int i, k = 0, last, p;
+    gets(isbn);
+    for (i = 0, p = 0; i < 11; i ++)
+    {          
+        if (isbn[i] == '-') continue;
+        p ++;
+        k += (isbn[i] - 48) * p;
+    }
+    last = k % 11;
+    if (last == 10)
+        last = 'X';
+    else
+        last += 48;
+ 
+    if (last == isbn[12])
+        printf("Right");
+    else
+    {          
+        isbn[12] = last;
+        printf("%s", isbn);
+    }
+    return 0;
+}   
+
+编程判断输入的一个字符串是否是“回文”。所谓“回文”字符串就是从左读和从右读都一样的字符串。例如: "abcba"就是一个回文字符串。
+要求：先输出("Input a string:\n")，输入字符串，然后判断是否回文，最后输出
+("This string is a plalindrome.\n")或者("This string is not a plalindrome.\n")
+下面程序中存在比较隐蔽的错误，请通过分析和调试程序，发现并改正程序中的错误。
+
+#include <stdio.h>
+int fun(char a[]);
+int main()
+{
+	char a[80];
+	printf("Input a string:\n");
+	gets(a);
+	if (fun(a)==0)
+	{
+		printf("This string is a plalindrome.\n");
+	}
+	else
+	{
+		printf("This string is not a plalindrome.\n");
+	}
+}
+int fun(char a[])
+{
+	int i, j;
+	int count = 0;
+	for (i = 0, j = strlen(a)-1; i < j; i++,j--)
+	{
+		if (a[i] == a[j])
+		{
+			count++;
+		}
+	}
+	if (strlen(a) % 2 == 0)
+	{
+		if (count == 0.5 * strlen(a))
+			return 0;
+	}
+	else
+		if (count == (strlen(a) - 1) * 0.5)
+			return 0;
+
+}
+
+逆序存放
+
+#include<string.h>
+#include<stdio.h>
+#define ARR_SIZE  80      
+void Inverse(char str[]);
+int main()
+{
+    char a[ARR_SIZE];
+    printf("Please enter a string: ");
+    gets(a);
+    Inverse(a);        
+    printf("The inversed string is: ");
+    puts(a);
+}
+ 
+void Inverse(char str[])
+{
+    int   len, i, j;
+    char  *temp;             
+    len = strlen(str);
+    for (i=0,j=len-1; i<j; i++,j--)  
+    {
+        temp = str[i];
+        str[i] = str[j];         
+        str[j] = temp;
+    }
+}
+
+编写一个程序，将一个字符串s2插入到字符串s1中，其起始插入位置为n。
+**输入格式要求："%d"  使用gets()接收字符串s1和s2  提示信息："main string:" "sub string:" "site of beginning:(<=%d)"
+**输出格式要求："After instert:%s\n" 
+程序运行示例如下：
+main string:hello,world!
+sub string:c 
+site of beginning:(<=12)6
+After instert:hello,cworld!
+
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+    int i,j,len1,len2,n;
+    char a[100],b[100];
+    printf("main string:");
+    gets(a);
+    printf("sub string:");
+    gets(b);
+    len2=strlen(b);
+    len1=strlen(a);
+    printf("site of beginning:(<=%d)",len1);
+    scanf("%d",&n);
+    for(i=len1-1;i>=n;i--)
+    {
+        a[i+len2]=a[i];
+    }
+    for(i=n,j=0;b[j]!='\0';j++,i++)
+    {
+        a[i]=b[j];
+    }
+    a[len1+len2]='\0';
+    printf("After instert:%s\n",a);
+    return 0;
+}
+输入年月日，判断他是第几天
+
+参考答案
+#include <stdio.h>
+ 
+struct dt
+{                  
+    int year;
+    int month;
+    int day;
+}                   date;
+ 
+int days(struct dt date)
+{                  
+    int sum;
+ 
+    switch (date.month)
+    {                  
+    case 1:
+        sum = date.day;
+        break;
+    case 2:
+        sum = date.day + 31;
+        break;
+    case 3:
+        sum = date.day + 59;
+        break;
+    case 4:
+        sum = date.day + 90;
+        break;
+    case 5:
+        sum = date.day + 120;
+        break;
+    case 6:
+        sum = date.day + 151;
+        break;
+    case 7:
+        sum = date.day + 181;
+        break;
+    case 8:
+        sum = date.day + 212;
+        break;
+    case 9:
+        sum = date.day + 243;
+        break;
+    case 10:
+        sum = date.day + 273;
+        break;
+    case 11:
+        sum = date.day + 304;
+        break;
+    case 12:
+        sum = date.day + 334;
+        break;
+    }
+    if ((date.year % 4 == 0 && date.year % 100 != 0
+            || date.year % 400 == 0) && date.month >= 3)
+    {                  
+        sum += 1;
+    }
+ 
+    return sum;
+}
+ 
+int main(void)
+{                  
+    printf("请输入日期（年，月，日）\n");
+    scanf("%d,%d,%d", &date.year, &date.month, &date.day);
+ 
+    printf("\n%d月%d日是%d年的第%d天。", date.month, date.day, date.year, days(date));
+ 
+    return 0;
+}
+
+求复数之积。利用结构变量求解如下两组复数之积。
+
+za={3,4}, zb={5,6}
+
+za={10,20}, zb={30,40}
+
+**输出格式要求："(%d+%di)*(%d+%di)=" "(%d+%di)\n"
+程序运行示例如下：
+(3+4i)*(5+6i)=(-9+38i)
+(10+20i)*(30+40i)=(-500+1000i)
+
+参考答案
+#include "stdio.h"
+ 
+struct complx
+{                     
+  int real;
+  int im;
+}                     ;
+main()
+{                     
+  static struct complx za={3,4};
+  static struct complx zb={5,6};
+  struct complx x,y,z;
+  struct complx cmult();
+  void cpr();
+  z=cmult(za,zb);
+  cpr(za,zb,z);
+  x.real = 10; x.im = 20;
+  y.real = 30; y.im = 40;
+  z=cmult(x,y);
+  cpr(x,y,z);
+}                     
+struct complx cmult(struct complx za, struct complx zb)
+{                     
+      struct complx w;
+      w.real = za.real*zb.real - za.im*zb.im;
+      w.im   = za.real*zb.im+za.im*zb.real;
+      return w;
+}                     
+void cpr(struct complx za, struct complx zb, struct complx z)
+{                     
+    printf("(%d+%di)*(%d+%di)=",za.real,za.im,zb.real,zb.im);
+    printf("(%d+%di)\n",z.real,z.im);
+}   
+
+正确输出数值
+参考答案
+union uu
+{   int a;
+    struct
+    {   int u;
+        float v;
+    }b;
+}             ;
+main()
+{   union uu m;
+    m.a=200;
+    printf("%d\t",m.a);
+    m.b.u=500;
+    m.b.v=120.5;
+    printf("%f\n",m.b.v);
+}
+
+13个人围成一圈，从第1个人开始顺序报号1、2、3，凡报到3的人退出圈子。找出最后留在圈子里的人原来的序号。要求用结构体编程实现。
+输出提示  "出圈成员及顺序："     格式  "%3d"
+输出提示  "\n最后的成员是："     格式  "%3d"
+
+程序的运行示例如下：
+出圈成员及顺序：  3  6  （后面以此类推，抱歉这里的输出结果保密，暂不公开，注意最后一个人是不出圈的哦）
+最后的成员是： （抱歉这里的输出结果保密，暂不公开）
+
+参考答案
+#include <stdio.h>
+ 
+#define     N   13
+ 
+struct person
+{                    
+    int number;
+    int nextp;
+}                     link[N + 1];
+ 
+int main(void)
+{                    
+    int i, count, h;
+ 
+    /* 建立队列 */
+    for (i = 1; i <= N; i++)
+    {                    
+        if (i == N)
+        {                    
+            link[i].nextp = 1;
+        }
+        else
+        {                    
+            link[i].nextp = i + 1;
+        }
+        link[i].number = i;
+    }
+    count = 0;
+    h = N;
+    printf("出圈成员及顺序：");
+    while (count < N - 1)
+    {                    
+        i = 0;
+        while (i != 3)
+        {                    
+            h = link[h].nextp;
+            if (link[h].number)
+            {                    
+                i++;
+            }
+        }
+        printf("%3d", link[h].number);
+        link[h].number = 0;
+        count++;
+    }
+ 
+    printf("\n最后的成员是：");
+    for (i = 1; i <= N; i++)
+    {                    
+        if (link[i].number)
+        {                    
+            printf("%3d", link[i].number);
+        }
+    }
+ 
+    return 0;
+}    
+
+编程统计候选人的得票数。设有3个候选人，Li,Zhang,Fun。
+要求输入投票总数n，然后每次输入一个得票的候选人的名字（区分大小写），若选民输错候选人姓名，则按废票处理。
+选民投票结束后程序自动显示各候选人的得票结果。
+
+
+参考答案
+#include <string.h>
+ 
+struct person
+{                  
+    char name[20];
+    int count;
+}                  ;
+ 
+struct person leader[3] = {"Li", 0, "Zhang", 0, "Fun", 0};
+ 
+int main()
+{                  
+    int i, j, n;
+    char leader_name[20];
+ 
+    scanf("%d", &n);
+    for (i = 0; i < n; i++)
+    {                  
+        scanf("%s", leader_name);
+        for (j = 0; j < 3; j++)
+            if (!strcmp(leader_name, leader[j].name))
+                leader[j].count++;
+    }
+    printf("\n");
+    for (i = 0; i < 3; i++)
+        printf("%5s:%d\n", leader[i].name, leader[i].count);
+    return 0;
+}          
+
+打印结构体数组的所有数据
+#include <stdio.h>
+struct s
+{
+	char name[10];
+	int age;
+};
+struct s a[3] = { "John",19,"Paul",17,"Marry",18 };
+int main()
+{
+	struct s * p;
+	for (p = a; p < a + 3; p++)
+	{
+		printf("%s,%d\n", p->name, p->age);
+	}
+	return 0;
+}
+
+候选人得票统计程序。设有3个候选人，每次输入一个得票候选人的名字，不考虑弃权情况，要求最后输出各个候选人的得票结果（参加投票的人数由程序运行时输入）。
+输入格式：
+"输入%d个候选人的基本信息：姓名\n"
+"%s"
+"输入参加投票的人数:"
+"%d"
+"输入%d个参加投票人的投票情况\n"
+"%s"
+输出格式：
+"输出%d个候选人的基本信息：姓名，票数\n"
+"%s %d\n"
+
+#include <stdio.h>
+#include <string.h>
+struct people
+{
+    char name[100];
+    int count;
+};
+int main()
+{
+    int n, i, j;
+    char leader_name[20];
+    struct people leader[3];
+    printf("输入3个候选人的基本信息：姓名\n");
+    for (i = 0; i < 3; i++)
+    {
+        scanf("%s", leader[i].name);
+    }
+    printf("输入参加投票的人数:");
+    scanf("%d", &n);
+    printf("输入%d个参加投票人的投票情况\n", n);
+    for (i = 0; i < n; i++)
+    {
+        leader[i].count=0;
+        scanf("%s", leader_name);
+        for (j = 0; j < 3; j++)
+        {
+            if (!strcmp(leader_name, leader[j].name))
+                leader[j].count++;
+        }
+    }
+    printf("输出3个候选人的基本信息：姓名，票数\n");
+    for (i = 0; i < 3; i++)
+    {
+        printf("%s %d\n", leader[i].name, leader[i].count);
+    }
+    return 0;
+}
+
+给定如下定义：
+ struct time_rec
+  {
+    int hours ;
+    int mins  ;
+    int secs  ;
+  } ;
+  struct time_rec current_time ; 
+写一个程序包含如下的函数，完成：
+(a) 输入current_time的值：
+void input_time(struct time_rec *current_time)
+(b) 将current_time增加1秒：
+void increment_time(struct time_rec *current_time)
+(c) 显示current_time的新值。
+void output_time(struct time_rec *current_time)
+
+**输入格式要求："%d%d%d" 提示信息："请输入当前时间（时 分 秒）："
+**输出格式要求："当前时间：%d时%d分%d秒！"
+
+#include <stdio.h>
+struct time_rec
+{
+    int hours;
+    int mins;
+    int secs;
+};
+struct time_rec current_time ;
+void input_time(struct time_rec *current_time)
+{
+    scanf("%d%d%d",&current_time->hours,&current_time->mins,&current_time->secs);
+}
+void increment_time(struct time_rec *current_time)
+{
+    current_time->secs++;
+    if(current_time->secs==60)
+    {
+        current_time->mins++;
+        current_time->secs=0;
+    }
+    if(current_time->mins==60)
+    {
+        current_time->mins=0;
+        current_time->hours++;
+    }
+    if(current_time->hours==24)
+    {
+        current_time->hours=0;
+    }
+}
+void output_time(struct time_rec *current_time)
+{
+    printf("当前时间：%d时%d分%d秒！",current_time->hours,current_time->mins,current_time->secs);
+}
+int main()
+{
+    struct time_rec p1;
+    printf("请输入当前时间（时 分 秒）：");
+    input_time(&p1);
+    increment_time(&p1);
+    output_time(&p1);
+}
+
+用结构体实现输入4个学生的学号（无符号整数）、姓名（字符串）和考试成绩（整数），然后按从高分到低分的顺序排列后输出。
+程序的运行示例如下：
+输入第1个学生的信息：学号、姓名、成绩
+2011 zhangsan 89
+输入第2个学生的信息：学号、姓名、成绩
+2012 lisi 96
+输入第3个学生的信息：学号、姓名、成绩
+2013 wangwu 67
+输入第4个学生的信息：学号、姓名、成绩
+2014 liuliu 59
+排序后学生的信息为:
+2012 lisi 96
+2011 zhangsan 89
+2013 wangwu 67
+2014 liuliu 59
+
+参考答案
+#include <stdio.h>
+ 
+#define N 4
+ 
+struct Student1
+{                    
+    unsigned int sno;
+    char sname[16];
+    int score;
+}                    ;
+ 
+int main(int argc, char *argv[])
+{                    
+    struct Student1 stu[N];
+    int i, j;
+    struct Student1 temp;
+ 
+ 
+    for (i = 0; i < N; i++)
+    {                    
+        printf("输入第%d个学生的信息：学号、姓名、成绩\n", i + 1);
+        scanf("%d %s %d", &stu[i].sno, stu[i].sname, &stu[i].score);
+    }
+ 
+    for (i = 0; i < N - 1; i++)
+    {                    
+        for (j = 0; j < N - i - 1; j++)
+        {                    
+            if (stu[j].score < stu[j + 1].score)
+            {                    
+                temp = stu[j];
+                stu[j] = stu[j + 1];
+                stu[j + 1] = temp;
+            }
+        }
+    }
+ 
+    printf("排序后学生的信息为:\n");
+    for (i = 0; i < N; i++)
+    {                    
+        printf("%d %s %d\n", stu[i].sno, stu[i].sname, stu[i].score);
+    }
+ 
+    return 0;
+}      
+
+给定如下定义：
+struct date_rec
+  {
+    int day ;
+    int month ;
+    int year ;
+  };
+写一个函数接收两个日期，如果两个日期相同，则返回0，如果第一个日期晚于第二个日期，则返回1，如果第一个日期早于第二个日期，则返回-1。并编写main函数测试它。
+
+**输入格式要求："%d%d%d" 提示信息："请输入当前日期（年 月 日）："
+**输出格式要求："当前日期：%d年%d月%d日！\n" "第一个日期晚于第二个日期！" "第一个日期早于第二个日期！"  "两个日期相同！"
+
+程序运行示例如下：
+
+请输入当前日期（年 月 日）：2012 9 10↙
+请输入当前日期（年 月 日）：2013 7 10↙
+当前日期：2012年9月10日！  
+当前日期：2013年7月10日！
+第一个日期早于第二个日期！
+
+参考答案
+#include <stdio.h>
+ 
+struct date_rec
+{               
+    int day;
+    int month;
+    int year;
+}               ;
+ 
+struct date_rec date1, date2;
+ 
+void input_date(struct date_rec *current_date)
+{               
+    printf("请输入当前日期（年 月 日）：");
+    scanf("%d%d%d", &current_date->year, &current_date->month, &current_date->day);
+}               
+ 
+int compare_date(struct date_rec *date1, struct date_rec *date2)
+{               
+    if (date1->year < date2->year)
+    {               
+        return -1;
+    }
+    else if (date1->year > date2->year)
+    {               
+        return 1;
+    }
+ 
+    if (date1->month < date2->month)
+    {               
+        return -1;
+    }
+    else if (date1->month > date2->month)
+    {               
+        return 1;
+    }
+ 
+    if (date1->day < date2->day)
+    {               
+        return -1;
+    }
+    else if (date1->day > date2->day)
+    {               
+        return 1;
+    }
+ 
+    return 0;
+}               
+ 
+void output_date(struct date_rec *current_date)
+{               
+    printf("当前日期：%d年%d月%d日！\n", current_date->year,
+           current_date->month, current_date->day);
+}               
+ 
+int main()
+{               
+    input_date(&date1);
+    input_date(&date2);
+ 
+    output_date(&date1);
+    output_date(&date2);
+ 
+    switch (compare_date(&date1, &date2))
+    {               
+    case 1:
+        printf("第一个日期晚于第二个日期！");
+        break;
+    case -1:
+        printf("第一个日期早于第二个日期！");
+        break;
+    case 0:
+        printf("两个日期相同！");
+    }
+ 
+    return 0;
+}  
+
+一些重要函数
+sprintf(待输入的数组，“%d等”，a，b......)；可以将一些变量组成字符串
+
+atoi（“字符数组名”）-》把字符串转化为数字，从看到的第一个数字开始！！！！！！！！@Q！！
+
+strlwr（字符数组名）-》把所有字母转化为小写
+
+int toupper(int ch);  把ch字符转化为大写
+
+int tolower(int ch); 把吃字符转化为小写。
+
+
+下面的函数MyStrcmp()用于实现字符串比较并返回较大字符串的功能，将两个字符串s和t进行比较，
+要求将两个字符串中第一个不相同字符的ASCII码值之差与较大的字符串作为MyStrcmp()函数的返回值。
+其中差值用return返回，函数的第三个参数用来存储较大的字符串，也是一种返回方式。
+
+#include <stdio.h>
+int MyStrcmp(char s[], char t[], char bigger[]);
+int main()
+{
+    char  str1[20], str2[20], str3[20];
+    int diff;
+    printf("Input string:");
+    gets(str1);
+    printf("Input another string:");
+    gets(str2);
+    diff = MyStrcmp(str1, str2, str3);
+    printf("The bigger string is:%s\n", str3);
+    printf("The differ of the strings is:%d\n", diff);
+    return 0;
+}
+ 
+int MyStrcmp(char s[], char t[], char bigger[])
+{
+    int i, result = 1;
+    int len1 = 0, len2 = 0;
+    while (s[len1++] != '\0');
+    while (t[len2++] != '\0');
+    for (i = 0; s[i] == t[i]; i++);
+    if (i==0 || s[i - 1] != '\0' )
+    {
+        result = s[i] - t[i];
+    }
+    if (result >= 0)
+    {
+        for (i = 0; i < len1; i++)
+            bigger[i] = s[i];
+    }
+    else
+    {
+        for (i = 0; i < len2; i++)
+            bigger[i] = t[i];
+    }
+    return result;
+}
+
+输入英文的星期几，查找星期表后输出对应的数字。具体的算法是：若发现与表中某项相同，则输出该字符串在表中的位置（序号）；若查到表尾仍不同，则输出错误信息。设星期表的内容如下图所示。
+0	sunday
+1	monday
+2	tuesday
+3	wednesday
+4	thursday
+5	friday
+6	saturday
+**输入格式要求："%s"  提示信息："Enter a string:"
+**输出格式要求："%s is %d\n"   "Error\n"
+程序运行示例如下：
+Enter a string:wednesday
+wednesday is 3
+
+参考答案
+#include <stdio.h>
+char week_day[][10]={"sunday","monday","tuesday","wednesday","thursday","friday","saturday"};
+main()
+{              
+    int i,j;
+    char id[10],c;
+    printf("Enter a string:");
+    scanf("%s",id);
+    for(i=0;i<7;i++)
+    {              
+        for(j=0;(c=week_day[i][j])==id[j]&&c!='\0';j++)
+            ;
+        if(c=='\0')
+            break;
+    }
+    if(i<7)
+        printf("%s is %d\n",id,i);
+    else
+        printf("Error\n");
+}              
